@@ -1,4 +1,9 @@
-# RapidCVScore - Quick Computation of Cardiovascular Risk Scores
+# RapidCVScore - Rapid Computation of Cardiovascular Risk Scores
+
+_Philipp Goos, Sanketa Hegde, Merten Prüser, Erenik Krasniqi, Constanze Schmidt, Christoph Dieterich, ACRIBiS Study Group, Angela Merzweiler (2024):
+RapidCVScore - Rapid Computation of Cardiovascular Risk Scores.
+GMDS Jahrestagung 2024, 9/10/2024.
+Available online at https://gesundheit-gemeinsam.de/gmds/ ._
 
 ## Risk scores
 
