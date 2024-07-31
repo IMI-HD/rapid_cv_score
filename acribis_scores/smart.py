@@ -26,7 +26,7 @@ Parameters = TypedDict('Parameters', {
     'HDL-cholesterol in mmol/L': Annotated[float, ValueRange(0.6, 2.5)],
     'Total cholesterol in mmol/L': Annotated[float, ValueRange(2.5, 8.0)],
     'eGFR in mL/min/1.73m²': Annotated[float, ValueRange(21.60551, 178.39297)],
-    'hs-CRP in mg/dL': Annotated[float, ValueRange(0.1, 15.0)],
+    'hs-CRP in mg/L': Annotated[float, ValueRange(0.1, 15.0)],
     'Antithrombotic treatment': bool
 })
 
@@ -46,7 +46,7 @@ WEIGHTS: dict[str, float] = {
     'Total cholesterol in mmol/L': 0.0959,
     'eGFR in mL/min/1.73m²': -0.0532,
     'Squared eGFR in mL/min/1.73m²': 0.000306,
-    'log(hs-CRP in mg/dL)': 0.139
+    'log(hs-CRP in mg/L)': 0.139
 }
 
 
@@ -55,7 +55,7 @@ def calc_smart_score(parameters: Parameters) -> float:
     new_parameters = dict({key: value for key, value in parameters.items()})
     new_parameters['Squared Age in years'] = parameters['Age in years'] ** 2
     new_parameters['Squared eGFR in mL/min/1.73m²'] = parameters['eGFR in mL/min/1.73m²'] ** 2
-    new_parameters['log(hs-CRP in mg/dL)'] = math.log(parameters['hs-CRP in mg/dL'])
+    new_parameters['log(hs-CRP in mg/L)'] = math.log(parameters['hs-CRP in mg/L'])
     x = sum([new_parameters[parameter] * weight for parameter, weight in WEIGHTS.items()])
     ten_year_risk = (1 - math.pow(0.81066, math.exp(x + 2.099)))
     if new_parameters['History of cerebrovascular disease']:
