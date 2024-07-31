@@ -28,7 +28,7 @@ class TestSMARTCalculator(unittest.TestCase):
                 },
                 "crp": {
                     "unit": "mg/L",
-                    "value": str(parameters['hs-CRP in mg/dL'])
+                    "value": str(parameters['hs-CRP in mg/L'])
                 },
                 "diabetesDiagnosis": parameters['Diabetic'],
                 "hdlCholesterol": {
