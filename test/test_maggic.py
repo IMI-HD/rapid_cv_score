@@ -5,7 +5,7 @@ from selenium import webdriver
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 
-from test import parameter_generator
+from parameter_generator import generate_maggic_parameters
 from acribis_scores.maggic import calc_maggic_score
 
 
@@ -21,7 +21,8 @@ class TestMAGGIC(unittest.TestCase):
         self.driver.maximize_window()
         yes_no = {True: 'yes', False: 'no'}
         for i in range(10):
-            parameters = parameter_generator.generate_maggic_parameters()
+            parameters = generate_maggic_parameters()
+            print(f"Run {i}:\n{parameters}")
             accept_button = self.driver.find_element(By.ID, 'accept-terms')
             if accept_button.is_displayed():
                 self.driver.find_element(By.ID, 'accept-terms').click()

@@ -6,8 +6,13 @@ from tkinter.ttk import *
 from acribis_scores import *
 
 SCORES = {'CHA2DS2-VASc': (chads_vasc.Parameters, chads_vasc.calc_chads_vasc_score),
+          'HAS-BLED': (has_bled.Parameters, has_bled.calc_has_bled_score),
           'SMART': (smart.Parameters, smart.calc_smart_score),
-          'MAGGIC': (maggic.Parameters, maggic.calc_maggic_score)}
+          'SMARTReach': (smart_reach.Parameters, smart_reach.calc_smart_reach_score),
+          'CHARGE-AF': (charge_af.Parameters, charge_af.calc_charge_af_score),
+          'MAGGIC': (maggic.Parameters, maggic.calc_maggic_score),
+          'BARCELONA-HF V1': (barcelona_hf_v1.Parameters, barcelona_hf_v1.calc_barcelona_hf_score),
+          'BARCELONA-HF V3': (barcelona_hf_v3.Parameters, barcelona_hf_v3.calc_barcelona_hf_score)}
 
 
 class Calculator(Frame):
@@ -71,8 +76,14 @@ class Calculator(Frame):
             if (type(value) is BooleanVar) or value.get():
                 score_parameters[name] = self.__fields[name](value.get())
             else:
-                showerror(title='Missing Values!', message=f"{name} is required but not provided as input!")
-                return
+                hint = typing.get_type_hints(SCORES[self.__selected_score.get()][0], include_extras=True)[name]
+                '''
+                The warning below is a known bug in IntelliJ. The code is correct and should not produce a warning.
+                https://youtrack.jetbrains.com/issue/PY-54576
+                '''
+                if typing.get_origin(hint) is not typing.NotRequired:
+                    showerror(title='Missing Values!', message=f"{name} is required but not provided as input!")
+                    return
         try:
             score = SCORES[self.__selected_score.get()][1](score_parameters)
         except ValueError as e:

@@ -10,6 +10,7 @@ from acribis_scores.smart import calc_smart_score
 class TestSMARTCalculator(unittest.TestCase):
     def test_smart(self):
         for i in range(10):
+            print(f"Test run {i + 1}:")
             creatinine = random.uniform(0.57, 2.26)
             parameters = generate_smart_parameters(creatinine)
             cvds = {'coronaryArteryDisease': parameters['History of coronary artery disease'],
@@ -60,6 +61,8 @@ class TestSMARTCalculator(unittest.TestCase):
                     "value": str(parameters['Years since first diagnosis of vascular disease'])
                 }
             }
+            print(f"Parameters: {parameters}")
+            print(f"JSON for U-Prevent: {json}")
 
             x = requests.post('https://uprevent-prod-api.azurewebsites.net/api/RiskCalculation/calculate', json=json)
             u_prevent_score = x.json()['tenYearRisk']['risk']

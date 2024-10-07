@@ -35,6 +35,10 @@ def generate_chads_vasc_parameters() -> chads_vasc.Parameters:
     return random_parameters
 
 
+def generate_has_bled_parameters() -> has_bled.Parameters:
+    return __get_random_parameters__(has_bled.Parameters)
+
+
 def generate_smart_parameters(creatinine: float) -> smart.Parameters:
     random_parameters = __get_random_parameters__(smart.Parameters)
     egfr = 186 * creatinine ** (-1.154) * random_parameters['Age in years'] ** (-0.203)
@@ -53,3 +57,10 @@ def generate_smart_parameters(creatinine: float) -> smart.Parameters:
 
 def generate_maggic_parameters() -> maggic.Parameters:
     return __get_random_parameters__(maggic.Parameters)
+
+
+def generate_barcelona_hf_v3_parameters() -> barcelona_hf_v3.Parameters:
+    parameters = __get_random_parameters__(barcelona_hf_v3.Parameters)
+    if parameters['ACEi/ARB']:
+        parameters['ARNI'] = False
+    return parameters

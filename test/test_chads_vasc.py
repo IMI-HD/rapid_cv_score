@@ -17,6 +17,7 @@ class TestCHADSVAScCalculator(unittest.TestCase):
         self.driver.maximize_window()
         for i in range(10):
             parameters = generate_chads_vasc_parameters()
+            print(f"Run {i}:\n{parameters}")
             self.driver.get("https://www.chadsvasc.org/")
             if parameters['Congestive heart failure/LV dysfunction']:
                 self.driver.find_element(By.CSS_SELECTOR, ".table1 .q0 > .td2 > div > div").click()
