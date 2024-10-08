@@ -33,9 +33,9 @@ class TestHASBLEDCalculator(unittest.TestCase):
                 self.driver.find_element(By.CSS_SELECTOR, ".table2 .q5 > .td2 > div > div").click()
             if parameters['Elderly']:
                 self.driver.find_element(By.CSS_SELECTOR, ".table2 .q6 > .td2 > div > div").click()
-            if parameters['Drugs Consumption']:
+            if parameters['Drugs']:
                 self.driver.find_element(By.CSS_SELECTOR, ".table2 .q7 > .td2 > div > div").click()
-            if parameters['Alcohol Consumption']:
+            if parameters['Alcohol']:
                 self.driver.find_element(By.CSS_SELECTOR, ".table2 .q8 > .td2 > div > div").click()
             element = self.driver.find_element(By.CSS_SELECTOR, ".result2 > div > div")
             online_score = int(element.text)

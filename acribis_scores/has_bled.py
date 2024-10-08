@@ -1,6 +1,6 @@
 from typing import TypedDict
 
-# See: https://academic.oup.com/eurheartj/article/42/5/373/5899003
+# See: https://doi.org/10.1378/chest.10-0134
 
 
 Parameters = TypedDict('Parameters', {
@@ -11,8 +11,8 @@ Parameters = TypedDict('Parameters', {
     'Bleeding history or predisposition': bool,
     'Labile international normalized ratio (INR)': bool,
     'Elderly': bool,
-    'Drugs Consumption': bool,
-    'Alcohol Consumption': bool,
+    'Drugs': bool,
+    'Alcohol': bool,
 })
 
 
